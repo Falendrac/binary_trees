@@ -77,5 +77,6 @@ int *heap_to_sorted_array(heap_t *heap, size_t *size);
 
 /* Additionnal advanced functions */
 void do_levelorder(const binary_tree_t *tree, void (*func)(int), int level);
+binary_tree_t *do_rotate_left(binary_tree_t *tree);
 
 #endif /* _BINARY_TREES_H_ */
