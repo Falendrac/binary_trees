@@ -1,52 +1,50 @@
 #include "binary_trees.h"
 
+/**
+ * binary_tree_depth - Measure the depth of a node in a binary tree
+ *
+ * @tree: The node we measure the depth
+ * Return: 0 if tree is NULL, otherwise the depth of the node
+ */
+size_t binary_tree_depth(const binary_tree_t *tree)
+{
+	if (tree != NULL && tree->parent != NULL)
+		return (1 + binary_tree_depth(tree->parent));
+
+	return (0);
+}
 
 /**
- * binary_tree_height - binary that measures the height of a binary tree
+ * perfect_tree - Checks if a binary tree is perfect with compare depth
+ * and level
  *
- * @tree: pointer to the root node of the tree to traverse
- * Return: if tree is NULL return NULL or must return 0
+ * @tree: The node we check if is perfect
+ * @depth: The depth of the current tree
+ * @level: The level of the current tree
+ * Return: 0 is not perfect, 1 if is perfect
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+int perfect_tree(const binary_tree_t *tree, int depth, int level)
 {
-	size_t left_height = 0;
-	size_t right_height = 0;
+	int left, right;
 
 	if (tree == NULL)
 		return (0);
 
 	if (tree->left == NULL && tree->right == NULL)
-		return (0);
+	{
+		if (depth == level + 1)
+			return (1);
+		else
+			return (0);
+	}
 
-	left_height = binary_tree_height(tree->left) + 1;
-	right_height = binary_tree_height(tree->right) + 1;
+	left = perfect_tree(tree->left, depth, level + 1);
+	right = perfect_tree(tree->right, depth, level + 1);
 
-	if (left_height > right_height)
-		return (left_height);
-	else
-		return (right_height);
-}
+	if (left == right)
+		return (1);
 
-
-/**
- * binary_tree_balance - measures the balance factor of a binary tree
- *
- * @tree: The node we measure the balance factor
- * Return: 0 if tree is NULL, otherwise the measure of balance factor
- */
-int binary_tree_balance(const binary_tree_t *tree)
-{
-	int heightLeft = 0, heightRight = 0;
-
-	if (tree == NULL)
-		return (0);
-
-	if (tree->left != NULL)
-		heightLeft = binary_tree_height(tree->left) + 1;
-	if (tree->right != NULL)
-		heightRight = binary_tree_height(tree->right) + 1;
-
-	return (heightLeft - heightRight);
+	return (0);
 }
 
 
@@ -58,16 +56,7 @@ int binary_tree_balance(const binary_tree_t *tree)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int balance;
+	int depth = binary_tree_depth(tree);
 
-	if (tree == NULL)
-		return (0);
-
-	balance = binary_tree_balance(tree);
-
-	if (balance == 0)
-		return (1);
-
-
-	return (0);
+	return (perfect_tree(tree, depth, 0));
 }
