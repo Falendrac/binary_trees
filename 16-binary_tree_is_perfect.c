@@ -44,7 +44,5 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	sizeLeft = binary_tree_size(tree->left);
 	sizeRight = binary_tree_size(tree->right);
 
-	printf("perfectleft: %d ; perfectright: %d ; sizeLeft: %d ; sizeRight: %d\n", perfectLeft, perfectRight, sizeLeft, sizeRight);
-
 	return (sizeLeft - sizeRight == 0 && perfectLeft && perfectRight);
 }
