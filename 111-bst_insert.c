@@ -34,7 +34,7 @@ int bst_insertion(bst_t *tree, bst_t *new)
  *
  * @tree: pointer to the root node of the tree to check
  * @value: the value to store
- * Return:
+ * Return: the new tree
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
