@@ -1,5 +1,12 @@
 #include "binary_trees.h"
 
+/**
+ * do_levelorder - binary tree using level-order traversal
+ *
+ * @tree: pointer to the root node of the tree to traverse
+ * @func: pointer to a function to call for each node
+ * @level: level
+ */
 void do_levelorder(const binary_tree_t *tree, void (*func)(int), int level)
 {
 	if (tree == NULL)
@@ -11,7 +18,6 @@ void do_levelorder(const binary_tree_t *tree, void (*func)(int), int level)
 	{
 		do_levelorder(tree->left, func, level - 1);
 		do_levelorder(tree->right, func, level - 1);
-
 	}
 }
 

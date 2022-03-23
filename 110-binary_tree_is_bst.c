@@ -12,7 +12,8 @@ int node_less(const binary_tree_t *tree, int node_tested)
 	if (tree == NULL)
 		return (1);
 	if (tree->n < node_tested)
-		if (node_less(tree->left, node_tested) && node_less(tree->right, node_tested))
+		if (node_less(tree->left, node_tested) &&
+			node_less(tree->right, node_tested))
 			return (1);
 	return (0);
 }
@@ -29,7 +30,8 @@ int node_great(const binary_tree_t *tree, int node_tested)
 	if (tree == NULL)
 		return (1);
 	if (tree->n > node_tested)
-		if (node_great(tree->left, node_tested) && node_great(tree->right, node_tested))
+		if (node_great(tree->left, node_tested) &&
+			node_great(tree->right, node_tested))
 			return (1);
 	return (0);
 }

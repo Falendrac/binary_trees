@@ -2,36 +2,23 @@
 
 
 /**
- * perfect_tree - Checks if a binary tree is perfect with compare depth
- * and level
+ * binary_tree_size - binary that measures the size of a binary tree
  *
- * @tree: The node we check if is perfect
- * @depth: The depth of the current tree
- * @level: The level of the current tree
- * Return: 0 is not perfect, 1 if is perfect
+ * @tree: pointer to the root node of the tree to traverse
+ * Return: if tree is NULL return NULL or must return 0
  */
-int perfect_tree(const binary_tree_t *tree, int depth, int level)
+size_t binary_tree_size(const binary_tree_t *tree)
 {
-	int left, right;
+	size_t left_size = 0;
+	size_t right_size = 0;
 
 	if (tree == NULL)
 		return (0);
 
-	if (tree->left == NULL && tree->right == NULL)
-	{
-		if (depth == level + 1)
-			return (1);
-		else
-			return (0);
-	}
+	left_size = binary_tree_size(tree->left);
+	right_size = binary_tree_size(tree->right) + 1;
 
-	left = perfect_tree(tree->left, depth, level + 1);
-	right = perfect_tree(tree->right, depth, level + 1);
-
-	if (left == right)
-		return (1);
-
-	return (0);
+	return (left_size + right_size);
 }
 
 
@@ -43,22 +30,21 @@ int perfect_tree(const binary_tree_t *tree, int depth, int level)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int depth = binary_tree_depth(tree);
+	int sizeLeft, sizeRight, perfectLeft, perfectRight;
 
-	return (perfect_tree(tree, depth, 0));
-}
+	if (tree == NULL)
+		return (0);
 
+	if (tree->left == NULL && tree->right == NULL)
+		return (1);
 
-/**
- * binary_tree_depth - Measure the depth of a node in a binary tree
- *
- * @tree: The node we measure the depth
- * Return: 0 if tree is NULL, otherwise the depth of the node
- */
-size_t binary_tree_depth(const binary_tree_t *tree)
-{
-	if (tree->parent != NULL)
-		return (1 + binary_tree_depth(tree->parent));
+	perfectLeft = binary_tree_is_perfect(tree->left);
+	perfectRight = binary_tree_is_perfect(tree->left);
 
-	return (0);
+	sizeLeft = binary_tree_size(tree->left);
+	sizeRight = binary_tree_size(tree->right);
+
+	printf("perfectleft: %d ; perfectright: %d ; sizeLeft: %d ; sizeRight: %d\n", perfectLeft, perfectRight, sizeLeft, sizeRight);
+
+	return (sizeLeft - sizeRight == 0 && perfectLeft && perfectRight);
 }
