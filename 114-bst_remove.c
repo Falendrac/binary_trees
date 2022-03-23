@@ -21,7 +21,7 @@ bst_t *lowest_value(bst_t *root)
  * @root: the tree
  * Return: the tree
  */
-bst_t *delete (bst_t *root, bst_t *node)
+bst_t *delete(bst_t *root, bst_t *node)
 {
 	bst_t *parent = node->parent;
 	bst_t *new = NULL;
@@ -59,7 +59,7 @@ bst_t *delete (bst_t *root, bst_t *node)
 	new = lowest_value(right);
 	node->n = new->n;
 
-	return (delete (root, new));
+	return (delete(root, new));
 }
 
 /**
@@ -75,7 +75,7 @@ bst_t *remove_recurtion(bst_t *root, bst_t *node, int value)
 	if (node)
 	{
 		if (node->n == value)
-			return (delete (root, node));
+			return (delete(root, node));
 		if (node->n > value)
 			return (remove_recurtion(root, node->left, value));
 		return (remove_recurtion(root, node->right, value));
@@ -87,8 +87,8 @@ bst_t *remove_recurtion(bst_t *root, bst_t *node, int value)
 /**
  * bst_remove - remove an node from an tree
  *
- * @array: the array to convert
  * @root: the tree
+ * @value: value we remove
  * Return: the tree
  */
 bst_t *bst_remove(bst_t *root, int value)
