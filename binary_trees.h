@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -81,5 +82,10 @@ void do_levelorder(const binary_tree_t *tree, void (*func)(int), int level);
 binary_tree_t *do_rotate_left(binary_tree_t *tree);
 int node_less(const binary_tree_t *tree, int node_tested);
 int node_great(const binary_tree_t *tree, int node_tested);
+bst_t *remove_recurtion(bst_t *root, bst_t *node, int value);
+bst_t *delete(bst_t *root, bst_t *node);
+bst_t *lowest_value(bst_t *root);
+size_t binary_tree_height(const binary_tree_t *tree);
+int check_avl(const binary_tree_t *tree, int int_min, int int_max);
 
 #endif /* _BINARY_TREES_H_ */
