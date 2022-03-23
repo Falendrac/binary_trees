@@ -1,10 +1,10 @@
 #include "binary_trees.h"
 
 /**
- * bst_search - bulids BST from array
+ * bst_search - search a value in a tree
  *
- * @array: the array to convert
- * @size: the size of the array
+ * @tree: the tree to search to
+ * @value: the value tu find
  * Return: the tree
  */
 bst_t *bst_search(const bst_t *tree, int value)
