@@ -50,31 +50,31 @@ void avl_balance_check_right(avl_t **tree)
 	int balance;
 	avl_t *tmp;
 
-	balance = binary_tree_balance((*tree)->left);
+	balance = binary_tree_balance((*tree)->right);
 
 	if (balance > 1)
 	{
-		if (binary_tree_balance((*tree)->left->left) < 0)
+		if (binary_tree_balance((*tree)->right->left) < 0)
 		{
-			tmp = binary_tree_rotate_left((*tree)->left->left);
-			tmp->parent = ((*tree)->left);
-			(*tree)->left->left = tmp;
+			tmp = binary_tree_rotate_left((*tree)->right->left);
+			tmp->parent = ((*tree)->right);
+			(*tree)->right->left = tmp;
 		}
-		tmp = binary_tree_rotate_right((*tree)->left);
+		tmp = binary_tree_rotate_right((*tree)->right);
 		tmp->parent = *tree;
-		(*tree)->left = tmp;
+		(*tree)->right = tmp;
 	}
 	else if (balance < -1)
 	{
-		if (binary_tree_balance((*tree)->left->right) > 0)
+		if (binary_tree_balance((*tree)->right->right) > 0)
 		{
-			tmp = binary_tree_rotate_right((*tree)->left->right);
-			tmp->parent = ((*tree)->left);
-			(*tree)->left->right = tmp;
+			tmp = binary_tree_rotate_right((*tree)->right->right);
+			tmp->parent = ((*tree)->right);
+			(*tree)->right->right = tmp;
 		}
-		tmp = binary_tree_rotate_left((*tree)->left);
+		tmp = binary_tree_rotate_left((*tree)->right);
 		tmp->parent = *tree;
-		(*tree)->left = tmp;
+		(*tree)->right = tmp;
 	}
 }
 
